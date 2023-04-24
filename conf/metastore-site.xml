@@ -33,7 +33,7 @@ likely need to add a number of new values. -->
   </property>
 <property>
     <name>javax.jdo.option.ConnectionURL</name>
-    <value>jdbc:mysql://localhost:3306/metastore?createDatabaseIfNotExist=true</value>
+    <value>jdbc:mysql://hive-metastore-mariadb:3306/metastore?createDatabaseIfNotExist=true</value>
 </property>
 <property>
     <name>javax.jdo.option.ConnectionDriverName</name>

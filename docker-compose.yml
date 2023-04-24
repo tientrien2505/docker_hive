@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  hive-metastore:
+    image: hive-metastore:latest
+    volumes:
+      - ./conf:/opt/metastore/conf
+    command: bash -c "/opt/metastore/bin/start-metastore"
+    ports:
+      - "9083:9083"
+    depends_on: 
+     - hive-metastore-mariadb
+    networks:
+     - my_network
+    restart: always
+  hive-metastore-mariadb:
+    image: mariadb:10.3.35
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: metastore
+      MYSQL_USER: hive
+      MYSQL_PASSWORD: hive
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+     - my_network
+    restart: always
+networks:
+  my_network:
+
